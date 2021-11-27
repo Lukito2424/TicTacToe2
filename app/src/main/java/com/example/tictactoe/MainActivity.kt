@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var button8 : Button
     private lateinit var button9 : Button
     private lateinit var refreshButton : Button
+    private lateinit var restartButton : Button
     private var activePlayer = 1
     private var firstPlayer = ArrayList<Int>()
     private var secondPlayer = ArrayList<Int>()
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.button8 -> buttonNumber = 8
                 R.id.button9 -> buttonNumber = 9
                 R.id.refreshButton -> onRefresh()
+                R.id.restartButton -> gameRestart()
 
             }
             if(buttonNumber!=0){
@@ -57,7 +59,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-      fun playGame(clickedView: Button, buttonNumber: Int) {
+    private fun gameRestart() {
+        onRefresh()
+        firstpScore = 0
+        firstPlayerScore.setText("First Player : $firstpScore")
+        secondpScore = 0
+        secondPlayerScore.setText("Second Player : $secondpScore")
+
+    }
+
+    fun playGame(clickedView: Button, buttonNumber: Int) {
         if(activePlayer == 1){
             clickedView.text = "X"
             clickedView.setTextColor(Color.RED)
@@ -199,6 +210,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button8 = findViewById(R.id.button8)
         button9 = findViewById(R.id.button9)
         refreshButton = findViewById(R.id.refreshButton)
+        restartButton = findViewById(R.id.restartButton)
         firstPlayerScore = findViewById(R.id.firstPlayerScore)
         secondPlayerScore = findViewById(R.id.secondPlayerScore)
 
@@ -212,6 +224,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button8.setOnClickListener(this)
         button9.setOnClickListener(this)
         refreshButton.setOnClickListener(this)
+        restartButton.setOnClickListener(this)
 
     }
 
